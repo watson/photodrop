@@ -12,31 +12,6 @@ var airplay = require('airplay-photos')('PhotoDrop')
 var baseDir = os.tmpdir()
 var photos = []
 
-function frontpage (req, res) {
-  var fullPath = path.join(__dirname, 'public', 'index.html')
-  fs.createReadStream(fullPath).pipe(res)
-}
-
-function photoJson (req, res) {
-  res.end(JSON.stringify(photos))
-}
-
-function publicFile (req, res) {
-  var fullPath = path.join(__dirname, path.resolve('/', req.url))
-  fs.createReadStream(fullPath).pipe(res)
-}
-
-function picture (req, res) {
-  var filename = req.url.substr(1) // remove leading slash
-  if (!~photos.indexOf(filename)) {
-    res.writeHead(404)
-    res.end()
-    return
-  }
-  var fullPath = path.join(baseDir, filename)
-  fs.createReadStream(fullPath).pipe(res)
-}
-
 var server = http.createServer(function (req, res) {
   console.log(req.method, req.url)
   if (req.url === '/') frontpage(req, res)
@@ -61,3 +36,28 @@ airplay.on('photo', function (req) {
   console.log('writing new picture:', fullPath)
   req.pipe(file)
 })
+
+function frontpage (req, res) {
+  var fullPath = path.join(__dirname, 'public', 'index.html')
+  fs.createReadStream(fullPath).pipe(res)
+}
+
+function photoJson (req, res) {
+  res.end(JSON.stringify(photos))
+}
+
+function publicFile (req, res) {
+  var fullPath = path.join(__dirname, path.resolve('/', req.url))
+  fs.createReadStream(fullPath).pipe(res)
+}
+
+function picture (req, res) {
+  var filename = req.url.substr(1) // remove leading slash
+  if (!~photos.indexOf(filename)) {
+    res.writeHead(404)
+    res.end()
+    return
+  }
+  var fullPath = path.join(baseDir, filename)
+  fs.createReadStream(fullPath).pipe(res)
+}
