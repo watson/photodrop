@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PhotoDrop</title>
+  <script src="/public/jquery.js"></script>
+  <script>
+    $(function () {
+      setInterval(function () {
+        $.getJSON('/photos', function (data) {
+          var items = []
+          $.each(data, function (key, val) {
+            items.push('<div style="background-image: url(' + val + ')"></div>')
+          })
+          $('#photos').html(items.join(''))
+        })
+      }, 5000)
+    })
+  </script>
+  <style type="text/css">
+    #photos div {
+      float: left;
+      width: 250px;
+      height: 250px;
+      margin: 10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center; 
+    }
+  </style>
+</head>
+<body>
+  <div id="photos"></div>
+</body>
+</html>

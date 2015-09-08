@@ -1,0 +1,38 @@
+{
+  "name": "photodrop",
+  "version": "0.0.0",
+  "description": "An AirPlay enabled website to showcase your cool photos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "photodrop": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/watson/photodrop.git"
+  },
+  "dependencies": {
+    "airplay-photos": "^1.0.0",
+    "node-uuid": "^1.4.3",
+    "opn": "^3.0.2"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "airplay",
+    "photo",
+    "photos",
+    "server",
+    "website",
+    "sync"
+  ],
+  "author": "Thomas Watson Steen <w@tson.dk> (https://twitter.com/wa7son)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/watson/photodrop/issues"
+  },
+  "homepage": "https://github.com/watson/photodrop#readme",
+  "preferGlobal": true
+}
