@@ -1,6 +1,6 @@
 {
   "name": "photodrop",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "An AirPlay enabled website to showcase your cool photos",
   "main": "index.js",
   "scripts": {
@@ -34,5 +34,9 @@
     "url": "https://github.com/watson/photodrop/issues"
   },
   "homepage": "https://github.com/watson/photodrop#readme",
-  "preferGlobal": true
+  "preferGlobal": true,
+  "coordinates": [
+    52.2491819,
+    -7.0603421
+  ]
 }
