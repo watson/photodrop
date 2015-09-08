@@ -44,6 +44,7 @@ function frontpage (req, res) {
 
 function photoJson (req, res) {
   res.end(JSON.stringify(photos))
+  photos = []
 }
 
 function publicFile (req, res) {
@@ -53,11 +54,13 @@ function publicFile (req, res) {
 
 function picture (req, res) {
   var filename = req.url.substr(1) // remove leading slash
-  if (!~photos.indexOf(filename)) {
-    res.writeHead(404)
-    res.end()
-    return
-  }
-  var fullPath = path.join(baseDir, filename)
-  fs.createReadStream(fullPath).pipe(res)
+  var fullPath = path.join(baseDir, path.resolve('/', req.url))
+  fs.exists(fullPath, function (exists) {
+    if (!exists) {
+      res.writeHead(404)
+      res.end()
+      return
+    }
+    fs.createReadStream(fullPath).pipe(res)
+  })
 }

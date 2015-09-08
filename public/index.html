@@ -12,9 +12,9 @@
           $.each(data, function (key, val) {
             items.push('<div style="background-image: url(' + val + ')"></div>')
           })
-          $('#photos').html(items.join(''))
+          $('#photos').prepend(items.join(''))
         })
-      }, 5000)
+      }, 1000)
     })
   </script>
   <style type="text/css">
